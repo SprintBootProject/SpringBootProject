@@ -6,4 +6,5 @@
 
 <mapper namespace="com.ssafy.mvc.board.dto.BoardDto">
 
+
 </mapper>
