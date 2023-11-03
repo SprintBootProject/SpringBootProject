@@ -1,5 +1,7 @@
 package com.ssafy.mvc.board.dto;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
