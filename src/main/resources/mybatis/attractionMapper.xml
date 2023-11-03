@@ -5,7 +5,7 @@
 
 
 
-<mapper namespace="com.ssafy.mvc.attraction.dto.AttractionDto">
+<mapper namespace="com.ssafy.mvc.attraction.repository.AttractionRepository">
 
 	
 </mapper>

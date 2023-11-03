@@ -1,11 +1,13 @@
 package com.ssafy.mvc.board.dto;
 
+import org.springframework.stereotype.Component;
+
 public class ReplyDto {
 	private int replyNo;
 	private int articleNo;
 	private String replyCotent;
 	private String userId;
-	
+	public ReplyDto() {}
 	public ReplyDto(String replyCotent, String userId) {
 		super();
 		this.replyCotent = replyCotent;
