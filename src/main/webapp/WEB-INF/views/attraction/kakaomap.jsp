@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/include/head.jsp"%>
+<%@ include file="../include/head.jsp"%>
 <meta charset="utf-8" />
 <title>Kakao 지도 시작하기</title>
 </head>
 <body>
-	<%@ include file="/include/nav.jsp"%>
+	<%@ include file="../include/nav.jsp"%>
 	<div id="map" style="width: 1500px; height: 800px;"></div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d7b65c02e09f25693375de0c659e2ae4"></script>

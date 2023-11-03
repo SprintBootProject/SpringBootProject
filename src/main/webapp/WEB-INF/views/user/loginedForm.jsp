@@ -7,10 +7,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <title>Insert title here</title>
-<%@ include file="/include/head.jsp"%>
+<%@ include file="../include/head.jsp"%>
 </head>
 <body>
-	<%@ include file="/include/nav.jsp"%>
+	<%@ include file="../include/nav.jsp"%>
 
 	<%-- 페이지만의 내용 --%>
 	<div class="container p-4">

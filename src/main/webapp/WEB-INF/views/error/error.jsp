@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-	<%@ include file="/include/head.jsp"%>
-	<%@ include file="/include/nav.jsp"%>
+	<%@ include file="../include/head.jsp"%>
+	<%@ include file="../include/nav.jsp"%>
       <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 col-sm-12">
           <h2 class="my-3 py-3 shadow-sm bg-light text-center">
