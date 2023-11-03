@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/include/head.jsp"%>
+<%@ include file="../include/head.jsp"%>
 <meta charset="UTF-8">
 
 <title>Insert title here</title>
@@ -12,8 +12,8 @@
 
 </head>
 <body>
-	<%@ include file="/include/nav.jsp"%>
-	<form action="/enjoy_back/SidoController" method="post">
+	<%@ include file="../include/nav.jsp"%>
+	<form action="/attr/mapview" method="post">
 		<div class="sido">
 			<select name="sido" id="sido">
 				<c:forEach var="sido" items="${sidoList}">
@@ -37,18 +37,20 @@
 									.change(
 											function() {
 												let sidoCode = $(this).val();
+												//console.log("sidoCode : " + sidoCode);
 
 												$
 														.ajax({
-															url : '/enjoy_back/GugunController',
+															url : '/attr/gugun/'+sidoCode,
 															type : 'GET',
-															data : {
+/*  															data : {
 																'sido_code' : sidoCode
-															},
-															dataType : 'json',
+															}, */
+															dataType : 'json', 
 															success : function(
 																	data) {
 																let $gugun = $('#gugun');
+																console.log("data"+ data)
 																$gugun.empty(); // 기존의 구/군 옵션을 삭제
 																$gugun
 																		.append('<option value="">구군선택</option>'); // 기본 옵션 추가
