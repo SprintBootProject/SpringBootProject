@@ -46,7 +46,7 @@
           return;
         } else {
           let form = document.querySelector("#form-register");
-          form.setAttribute("action", "${root}/article");
+          form.setAttribute("action", "${root}/board/write");
           form.submit();
         }
       });

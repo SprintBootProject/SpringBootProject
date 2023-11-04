@@ -17,7 +17,7 @@
                 글쓰기
               </button>
             </div>
-            <div class="col-md-7 offset-3">
+            <div class="col-md-7 offset-3">기
               <form class="d-flex" id="form-search" action="">
                 <input type="hidden" name="action" value="list"/>
                 <input type="hidden" name="pgno" value="1"/>
@@ -88,12 +88,12 @@
       titles.forEach(function (title) {
         title.addEventListener("click", function () {
           console.log(this.getAttribute("data-no"));
-          location.href = "${root}/article?action=view&articleno=" + this.getAttribute("data-no");
+          location.href = "${root}/board/view/?articleNo=" + this.getAttribute("data-no");
         });
       });
 
       document.querySelector("#btn-mv-register").addEventListener("click", function () {
-        location.href = "${root}/article?action=mvwrite";
+        location.href = "${root}/board/mvwrite";
       });
       
       document.querySelector("#btn-search").addEventListener("click", function () {

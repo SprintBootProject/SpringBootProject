@@ -1,77 +1,68 @@
 package com.ssafy.mvc.board.controller;
 
-import com.ssafy.mvc.board.dto.BoardDto;
-import com.ssafy.mvc.board.dto.ReplyDto;
-import com.ssafy.mvc.board.service.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.ssafy.mvc.board.dto.BoardDto;
+import com.ssafy.mvc.board.service.BoardService;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 @RequestMapping("/board")
 public class BoardController {
-    final private BoardService boardService;
+    private final BoardService boardService;
 
+    @Autowired
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }
 
-    @GetMapping("/list/{pgno}/{key}/{word}")
-    public Map<String, Object> getList(@PathVariable("pgno") String pgno, @PathVariable("key") String key, @PathVariable("word") String word ) throws Exception {
+    @GetMapping("/list")
+    public String list(Model model) throws Exception {
+        // Retrieve the list of articles from the service
         Map<String, String> map1 = new HashMap<>();
-        map1.put("pgno", pgno);
-        map1.put("key", key);
-        map1.put("word", word);
+        map1.put("pgno", "1");
+        map1.put("key", "1");
+        map1.put("word", "1");
+        List<BoardDto> articles = boardService.listArticle(map1);
+        model.addAttribute("articles", articles);
 
-        Map<String, Object> map = new HashMap<>();
-        List<BoardDto> list = boardService.listArticle(map1);
-        map.put("list", list);
-
-        return map;
+        return "board/list"; // Return the name of the JSP/Thymeleaf template
     }
 
-    @PostMapping("/modify")
-    public Map<String, Object> getModify(@RequestBody BoardDto boardDto) throws Exception {
-        Map<String, Object> map = new HashMap<>();
-        boardService.modifyArticle(boardDto);
-        return map;
+    @GetMapping("/view")
+    public String view(int articleNo, Model model) throws Exception {
+        // Retrieve the article by articleNo from the service
+        BoardDto article = boardService.getArticle(articleNo);
+        model.addAttribute("article", article);
+
+        return "board/view";
     }
 
-    @GetMapping("/view/{articleNo}")
-    public Map<String, Object> getView(@PathVariable("articleNo") String articleNo) throws Exception {
-        Map<String, Object> map = new HashMap<>();
-        BoardDto boardDto = boardService.getArticle(Integer.parseInt(articleNo));
-        map.put("board", boardDto);
-        return map;
+    @GetMapping("/mvwrite")
+    public String mvWrite() {
+        return "board/write";
     }
 
     @PostMapping("/write")
-    public Map<String, Object> write(@RequestBody BoardDto boardDto) throws Exception{
-        Map<String, Object> map = new HashMap<>();
+    public String write(BoardDto boardDto, RedirectAttributes redirectAttributes) throws Exception {
+        // Save the new article using the service
         boardService.writeArticle(boardDto);
-        return map;
+
+        // Redirect to the list page
+        redirectAttributes.addFlashAttribute("message", "Article created successfully!");
+        return "redirect:/board/list";
     }
 
-    @PostMapping("/reply")
-    public Map<String, Object> reply(@RequestBody ReplyDto replyDto) throws Exception{
-        Map<String, Object> map = new HashMap<>();
-        boardService.addReply(replyDto);
-        return map;
-    }
+    // delete as well
+    // ...
 
-
-    //  아래는 ----- form으로 만 이동
-//    @GetMapping("/write")
-//    public String getWrite() {
-//
-//        return "/board/write";
-//    }
-//    @PostMapping("/modify")
-//    public String Modify() throws Exception{
-//        return "";
-//    }
 
 }

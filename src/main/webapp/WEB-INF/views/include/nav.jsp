@@ -6,7 +6,7 @@
 	<ul class="navbar-nav me-auto">
 		<li class="nav-item"><a class="nav-link" href="${root }/attr"> map </a></li>
 		<li class="nav-item"><a class="nav-link" href="${root }/user/loginForm.jsp"> user </a></li>
-		<li class="nav-item"><a class="nav-link" href="${root }/article?action=list"> board </a></li>
+		<li class="nav-item"><a class="nav-link" href="${root }/board/list"> board </a></li>
 		
 	</ul>
 	<c:choose>

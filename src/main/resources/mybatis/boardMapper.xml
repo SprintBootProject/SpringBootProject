@@ -6,12 +6,22 @@
 
 <mapper namespace="com.ssafy.mvc.board.repository.BoardRepository">
 
+    <resultMap type="boardDto" id="boardMap">
+        <result column="article_no" property="articleNo"/>
+        <result column="user_id" property="userId"/>
+        <result column="subject" property="subject"/>
+        <result column="content" property="content"/>
+        <result column="hit" property="hit"/>
+        <result column="register_time" property="registerTime"/>
+    </resultMap>
+
+
     <insert id="boardWrite" parameterType="BoardDto">
         insert into board (user_id, subject, content)
         values (#{user_id}, #{subject}, #{content})
     </insert>
 
-    <select id="boardList" resultType="BoardDto" parameterType="map">
+    <select id="boardList" resultMap="boardMap" parameterType="map">
         select article_no, user_id, subject, content, hit, register_time
         from board
         <where>
