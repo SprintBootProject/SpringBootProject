@@ -3,9 +3,7 @@ package com.ssafy.mvc.board.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ssafy.mvc.board.dto.BoardDto;
 import com.ssafy.mvc.board.service.BoardService;
@@ -59,6 +57,26 @@ public class BoardController {
         // Redirect to the list page
         redirectAttributes.addFlashAttribute("message", "Article created successfully!");
         return "redirect:/board/list";
+    }
+
+    @GetMapping("/modify/{articleNo}")
+    public String getModify(@PathVariable("articleNo") String articleNo, Model model) throws Exception {
+        BoardDto boardDto = boardService.getArticle(Integer.parseInt(articleNo));
+        model.addAttribute("article", boardDto);
+        return "board/modify";
+    }
+
+
+    @PostMapping("/modify")
+    public String modify(@ModelAttribute BoardDto boardDto) throws Exception {
+        boardService.modifyArticle(boardDto);
+        return "redirect:/";
+    }
+
+    @GetMapping("/delect/{articleNo}")
+    public String delete(@PathVariable("articleNo") String articleNo) throws Exception {
+        boardService.deleteArticle(Integer.parseInt(articleNo));
+        return "redirect:/";
     }
 
     // delete as well

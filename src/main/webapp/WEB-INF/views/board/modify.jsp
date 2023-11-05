@@ -47,7 +47,7 @@
         }
       });
       document.querySelector("#btn-list").addEventListener("click", function () {
-        location.href = "${root}/article?action=list&pgno=1&key=&word=";
+        location.href = "${root}/board/modify";
       });
     </script>
 

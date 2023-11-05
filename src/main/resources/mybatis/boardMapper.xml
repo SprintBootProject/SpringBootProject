@@ -57,7 +57,7 @@
         </where>
     </select>
 
-    <select id="getArticle" resultType="BoardDto" parameterType="int">
+    <select id="getArticle" resultMap="boardMap" parameterType="int">
         select article_no, board.user_id, subject, content, hit, register_time, reply_content, reply.user_id
         from board left join reply using(article_no)
         where article_no = #{articleNo}

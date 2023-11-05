@@ -99,7 +99,7 @@
 </div>
 <script>
 	document.querySelector("#btn-list").addEventListener("click", function() {
-		location.href = "${root}/article?action=list";
+		location.href = "${root}/board/list";
 	});
 	document
 			.querySelector("#btn-mv-modify")
@@ -107,7 +107,7 @@
 					"click",
 					function() {
 						alert("글수정");
-						location.href = "${root}/article?action=mvmodify&articleno=${article.articleNo}";
+						location.href = "${root}/board/modify/${article.articleNo}";
 					});
 	document
 			.querySelector("#btn-delete")
@@ -115,7 +115,7 @@
 					"click",
 					function() {
 						alert("글삭제");
-						location.href = "${root}/article?action=delete&articleno=${article.articleNo}";
+						location.href = "${root}/board/delete${article.articleNo}";
 					});
 
 	/* 	document
